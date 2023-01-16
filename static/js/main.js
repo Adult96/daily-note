@@ -9,11 +9,12 @@ function selectorShowOrHide(boolean, ...selectors) {
   }
 }
 
-//========================= 달력 시작=========================
+//========================= 달력 =========================
 const mainPage = document.querySelector('.container.note');
 const mainPageList = document.querySelector('.container.note-list');
 const yearMonth = document.querySelector('.year-month');
 //달력 클릭 이벤트
+
 document.addEventListener('click', e => {
   if (e.target.className === 'day current') {
     date = `${yearMonth.innerHTML}.${e.target.innerText}`;
@@ -25,6 +26,7 @@ document.addEventListener('click', e => {
 $(document).ready(function () {
   calendarInit();
 });
+
 /*
   달력 렌더링 할 때 필요한 정보 목록 
 
@@ -119,9 +121,7 @@ function calendarInit() {
   });
 }
 
-//========================= 달력 끝=========================
-
-//========================= 리스트 시작=========================
+//========================= 리스트 상세페이지 =========================
 
 const noteAdd = document.querySelector('#note-add');
 const notePop = document.querySelector('#notePop');
@@ -132,30 +132,6 @@ const calendarEditPop = document.querySelector('#calendar-edit-pop');
 
 const cardBox = document.querySelector('#card-box');
 
-const noteTitle = document.querySelector('#notePop__title');
-const noteText = document.querySelector('#note-text');
-
-noteAddPop.addEventListener('click', e => {
-  const noteTitleValue = noteTitle.value;
-  const noteTextText = noteText.value;
-
-  const temp_html = `
-  <div class="col">
-  <div class="card bg-dark text-black">
-    <img src="/static/img/note.png" class="card-img" alt="..." />
-    <div class="card-img-overlay">
-      <h5 class="card-title">${noteTitleValue}</h5>
-        <p class="card-text">
-        ${noteTextText}
-        </p>
-      </div>
-    </div>
-  </div>
-  `;
-
-  $('#card-box').append(temp_html);
-});
-
 document.addEventListener('click', e => {
   if (e.target.className === 'card-img-overlay') {
     selectorShowOrHide(true, calendarEditPop);
@@ -164,9 +140,7 @@ document.addEventListener('click', e => {
   }
 });
 
-//========================= 리스트 끝=========================
-
-//=====================포스팅 팝업=========================
+//===================== 팝업 =========================
 
 $(document).ready(function () {
   $(document).on('click', '#note-add', function (e) {
