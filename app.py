@@ -140,20 +140,29 @@ def save_daily():
     db.daily.insert_one(doc)
 
     daily_list = list(db.daily.find({'id':id_receive, 'yyyyMM':yyyyMM_receive,'dd':day_receive},{'_id': False}))
-
-    print(daily_list)
     return jsonify({'daily_list': daily_list})    
 
-# @app.route("/update_daily", methods=["POST"])
-# def show_daily():
-#     receive_id = request.form['give_id']
-#     receive_date = request.form['give_date']
-#     receive_index = request.form['index_date']
+@app.route("/update_daily", methods=["POST"])
+def update_daily():
+    id_receive = request.form['id_give']
+    index_receive = request.form["index_give"]
+    index = int(index_receive)
+    title_receive = request.form["title_give"]
+    content_receive = request.form["content_give"]
+    yyyyMM_receive = request.form['yyyyMM_give']
+    day_receive = request.form['day_give']
 
-#     db.users.update_one({'id':receive_id, 'date':receive_date, 'index':receive_index},{'$set':{'age':19}})
+    print(index_receive,id_receive,yyyyMM_receive,day_receive,title_receive,content_receive)
+    
+    filter = {'index': index_receive}
+ 
+    newvalues = { "$set": { 'company': "sony" } }
 
-#     daily_list = list(db.daily.find({'id':receive_id, 'date':receive_date},{'_id': False}))
-#     return jsonify({'daily_list':daily_list})
+    db.daily.update_one(filter,newvalues)
+    
+    daily_list = list(db.daily.find({'id':id_receive, 'yyyyMM':yyyyMM_receive,'dd':day_receive},{'_id': False}))
+
+    return jsonify({'daily_list': daily_list})    
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

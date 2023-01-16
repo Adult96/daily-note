@@ -129,6 +129,20 @@
   border: 1px solid blue;
 }
 
+.cards-box__closeBtn {
+  border: none;
+  background-color: transparent;
+}
+
+.cards-box__closeBtn:hover {
+  color: red;
+  transition: all 300ms ease-in-out;
+}
+
+.card.bg-dark.text-black {
+  margin: 0;
+}
+
 /* ============ note list ========== */
 
 .container.note-list {

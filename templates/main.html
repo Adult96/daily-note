@@ -1,124 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <!-- google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Gothic+Coding:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+        <!-- google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="/static/css/style.css" />
-    <script src="/static/js/main.js" defer></script>
-    <script src="/static/js/common.js" defer></script>
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <script src="/static/js/main.js" defer></script>
+        <script src="/static/js/common.js" defer></script>
 
-    <title>daily note</title>
-  </head>
-  <body
-    data-spy="scroll"
-    data-target=".navbar"
-    data-offset="40"
-    id="body__login"
-  >
-    <!-- Page Navbar -->
-    <nav class="custom-navbar">
-      <div class="nav-box">
-        <a class="logo" data-id="{{id}}" href="/">Daily Note</a>
-        <ul class="nav">
-          <li class="item">
-            <a class="link" href="/login">로그아웃</a>
-          </li>
-        </ul>
-        <a
-          href="javascript:void(0)"
-          id="nav-toggle"
-          class="hamburger hamburger--elastic"
-        >
-          <div class="hamburger-box">
-            <div class="hamburger-inner"></div>
-          </div>
-        </a>
-      </div>
-    </nav>
-    <!-- End of Page Navbar -->
-    <main class="container note">
-      <div class="sec_cal">
-        <div class="cal_nav">
-          <a href="javascript:;" class="nav-btn go-prev">prev</a>
-          <div class="year-month"></div>
-          <a href="javascript:;" class="nav-btn go-next">next</a>
+        <title>daily note</title>
+    </head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="40" id="body__login">
+        <!-- Page Navbar -->
+        <nav class="custom-navbar">
+            <div class="nav-box">
+                <a class="logo" data-id="{{id}}" href="/">Daily Note</a>
+                <ul class="nav">
+                    <li class="item">
+                        <a class="link" href="/login">로그아웃</a>
+                    </li>
+                </ul>
+                <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </a>
+            </div>
+        </nav>
+        <!-- End of Page Navbar -->
+        <main class="container note">
+            <div class="sec_cal">
+                <div class="cal_nav">
+                    <a href="javascript:;" class="nav-btn go-prev">prev</a>
+                    <div class="year-month"></div>
+                    <a href="javascript:;" class="nav-btn go-next">next</a>
+                </div>
+                <div class="cal_wrap">
+                    <div class="days">
+                        <div class="day">MON</div>
+                        <div class="day">TUE</div>
+                        <div class="day">WED</div>
+                        <div class="day">THU</div>
+                        <div class="day">FRI</div>
+                        <div class="day">SAT</div>
+                        <div class="day">SUN</div>
+                    </div>
+                    <div class="dates"></div>
+                </div>
+            </div>
+        </main>
+        <main class="container note-list">
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="card-box"></div>
+            <div class="card-add">
+                <button type="button" id="note-add" class="btn btn-outline-dark">NOTE ADD</button>
+                <button type="button" id="calendar-back" class="btn btn-outline-dark">BACK</button>
+            </div>
+        </main>
+
+        <div id="notePop" class="closeBtn_C" style="display: none">
+            <div class="notePop__container" id="post-box">
+                <div class="form-floating mb-3 notePop__form">
+                    <input id="notePop__title" type="text" class="form-control" />
+                    <label>제목</label>
+                </div>
+                <div class="form-floating text">
+                    <textarea name="tags" id="note-text" cols="30" rows="10"> </textarea>
+                </div>
+                <div class="mybtns">
+                    <button type="button" class="btn btn-dark" id="note-add-pop">추가</button>
+                    <button type="button" class="btn btn-dark" id="calendar-edit-pop">수정</button>
+                    <button type="button" class="btn btn-outline-dark" id="close__notePop">닫기</button>
+                </div>
+            </div>
         </div>
-        <div class="cal_wrap">
-          <div class="days">
-            <div class="day">MON</div>
-            <div class="day">TUE</div>
-            <div class="day">WED</div>
-            <div class="day">THU</div>
-            <div class="day">FRI</div>
-            <div class="day">SAT</div>
-            <div class="day">SUN</div>
-          </div>
-          <div class="dates"></div>
-        </div>
-      </div>
-    </main>
-    <main class="container note-list">
-      <div class="row row-cols-1 row-cols-md-3 g-4" id="card-box"></div>
-      <div class="card-add">
-        <button type="button" id="note-add" class="btn btn-outline-dark">
-          NOTE ADD
-        </button>
-        <button type="button" id="calendar-back" class="btn btn-outline-dark">
-          BACK
-        </button>
-      </div>
-    </main>
-
-    <div id="notePop" class="closeBtn_C" style="display: none">
-      <div class="notePop__container" id="post-box">
-        <div class="form-floating mb-3 notePop__form">
-          <input id="notePop__title" type="text" class="form-control" />
-          <label>제목</label>
-        </div>
-        <div class="form-floating text">
-          <textarea name="tags" id="note-text" cols="30" rows="10"> </textarea>
-        </div>
-        <div class="mybtns">
-          <button type="button" class="btn btn-dark" id="note-add-pop">
-            추가
-          </button>
-          <button type="button" class="btn btn-dark" id="calendar-edit-pop">
-            수정
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-dark"
-            id="close__notePop"
-          >
-            닫기
-          </button>
-        </div>
-      </div>
-    </div>
-  </body>
+    </body>
 </html>
