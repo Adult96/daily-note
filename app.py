@@ -154,15 +154,24 @@ def update_daily():
 
     print(index_receive,id_receive,yyyyMM_receive,day_receive,title_receive,content_receive)
     
-    filter = {'index': index_receive}
+    filter = {'index': index}
  
-    newvalues = { "$set": { 'company': "sony" } }
+    newvalues = { "$set": { 'con': content_receive } }
 
     db.daily.update_one(filter,newvalues)
     
     daily_list = list(db.daily.find({'id':id_receive, 'yyyyMM':yyyyMM_receive,'dd':day_receive},{'_id': False}))
 
     return jsonify({'daily_list': daily_list})    
+
+@app.route("/delete_daily", methods=["POST"])
+def delete_daily():
+
+    receive_index = request.form['give_index']
+    print(receive_index)
+    db.daily.delete_one({'index':int(receive_index)})
+
+    return jsonify({'msg':'삭제완료'})    
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

@@ -32,7 +32,7 @@ document.addEventListener('click', (e) => {
         selectorShowOrHide(false, mainPage);
         selectorShowOrHide(true, mainPageList);
 
-        const dailyData = showAjax(yearAndMonth, day);
+        const dailyData = showAjax();
         //전역 변수 저장
         data = dailyData;
 
@@ -141,6 +141,7 @@ const noteAddPop = document.querySelector('#note-add-pop');
 const noteEditPop = document.querySelector('#calendar-edit-pop');
 
 const cardBox = document.querySelector('#card-box');
+const cardsBoxCloseBtn = document.querySelector('#cards-box__closeBtn');
 
 document.addEventListener('click', (e) => {
     if (e.target.className === 'card-img-overlay') {
@@ -178,6 +179,7 @@ noteEditPop.addEventListener('click', () => {
 noteAddPop.addEventListener('click', () => {
     const dailyData = saveAjex(yearAndMonth, day);
     show_daily(dailyData);
+    data = dailyData;
     removeText();
 });
 
@@ -210,6 +212,15 @@ function show_daily(datas) {
     closePopup();
 }
 
+document.addEventListener('click', (e) => {
+    if (e.target.className === 'cards-box__closeBtn') {
+        const index = e.target.parentNode.parentNode.dataset.index;
+        const datas = deleteAjax(index);
+        data = showAjax();
+        show_daily(data);
+    }
+});
+
 //===================== 팝업 =========================
 
 $(document).ready(function () {
@@ -225,7 +236,6 @@ function setText(datas, noteIndex) {
         const index = data['index'];
         const title = data['title'];
         const content = data['content'];
-        console.log(title, content);
 
         if (index === Number(noteIndex)) {
             $('#notePop__title').val(title);
@@ -269,7 +279,7 @@ calendarBack.addEventListener('click', () => {
 
 // ============ Ajax 통신 ==============
 
-function showAjax(yearAndMonth, day) {
+function showAjax() {
     let data = {};
 
     const tokenId = document.querySelector('.logo').getAttribute('data-id');
@@ -348,4 +358,21 @@ function updateAjax(index, title, content) {
     });
 
     return data;
+}
+
+function deleteAjax(index) {
+    $.ajax({
+        type: 'POST',
+        url: '/delete_daily',
+        data: {
+            give_index: index,
+        },
+        async: false,
+        success: function (response) {
+            response['msg'];
+        },
+        error: function () {
+            alert('에러 발생');
+        },
+    });
 }
