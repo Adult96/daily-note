@@ -13,6 +13,7 @@ const mainPage = document.querySelector('.container.note');
 document.addEventListener('click', e => {
   if (e.target.className === 'day current') {
     selectorShowOrHide(false, mainPage);
+    show_daily('ndk','20230116')
   }
 });
 
@@ -113,4 +114,40 @@ function calendarInit() {
   });
 }
 
+
 //========================= 달력 끝=========================
+
+// 날짜 별 데이터 보여주기
+function show_daily(id, date) {
+  $('#cards-box').empty()
+  $.ajax({
+    type: 'POST',
+    url: '/show_daily',
+    data: {'give_id':id , 'give_date':date},
+    success: function (response) {
+      let rows = response['daily_list']
+      console.log(rows);
+      for (let i = 0; i < rows.length; i++) {
+        let index = rows[i]['index']
+        // let id = rows[i]['id']
+        // let date = rows[i]['date']
+        let title = rows[i]['title']
+        let content = rows[i]['content']
+
+
+        let temp_html = `<div class="col">
+                                            <div class="card h-100">
+                                                <img src=""
+                                                     class="card-img-top">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${title}</h5>
+                                                    <p class="card-text">${content}</p>
+                                                    <button>삭제</button>
+                                                </div>
+                                            </div>
+                                        </div>`
+        $('#cards-box').append(temp_html)
+      }
+    }
+  })
+}
