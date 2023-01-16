@@ -10,7 +10,7 @@ import jwt
 from pymongo import MongoClient
 
 client = MongoClient(
-    "mongodb+srv://miniproject:<password>@cluster0.bqlznzm.mongodb.net/?retryWrites=true&w=majority")
+    "mongodb+srv://miniproject:sparta@cluster0.bqlznzm.mongodb.net/?retryWrites=true&w=majority")
 db = client.dbsparta
 
 # 웹스크래핑 bs4 패키지 추가
@@ -107,6 +107,13 @@ def main():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         print(logging.error(traceback.format_exc()))
         return render_template('login.html')
+
+@app.route("/show_daily", methods=["POST"])
+def show_daily():
+    receive_id = request.form['give_id']
+    receive_date = request.form['give_date']
+    daily_list = list(db.daily.find({'id':receive_id, 'date':receive_date},{'_id': False}))
+    return jsonify({'daily_list':daily_list})
 
 
 if __name__ == '__main__':
