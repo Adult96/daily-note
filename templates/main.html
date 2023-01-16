@@ -20,10 +20,11 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Gothic+Coding:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
@@ -106,27 +107,22 @@
     <div id="notePop" class="closeBtn_C" style="display: none">
       <div class="notePop__container" id="post-box">
         <div class="form-floating mb-3 notePop__form">
-          <input
-            id="notePop__title"
-            type="text"
-            class="form-control"
-            style="border-radius: 0"
-          />
+          <input id="notePop__title" type="text" class="form-control" />
           <label>제목</label>
         </div>
         <div class="form-floating text">
           <textarea name="tags" id="note-text" cols="30" rows="10"> </textarea>
         </div>
         <div class="mybtns">
-          <button type="button" class="btn btn-light" id="note-add-pop">
+          <button type="button" class="btn btn-dark" id="note-add-pop">
             추가
           </button>
-          <button type="button" class="btn btn-light" id="calendar-edit-pop">
+          <button type="button" class="btn btn-dark" id="calendar-edit-pop">
             수정
           </button>
           <button
             type="button"
-            class="btn btn-outline-light"
+            class="btn btn-outline-dark"
             id="close__notePop"
           >
             닫기

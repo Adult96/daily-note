@@ -12,6 +12,17 @@
       crossorigin="anonymous"
     />
 
+    <!--==========FONT Awesome PRO 5==========-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+      rel="stylesheet"
+    />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script
@@ -39,13 +50,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Gothic+Coding:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
     <link rel="stylesheet" href="/static/css/style.css" />
     <script src="/static/js/login.js" defer></script>
     <script src="/static/js/common.js" defer></script>
+    <script src="/static/js/typing.js" defer></script>
 
     <title>daily note</title>
   </head>
@@ -82,8 +94,8 @@
     <main class="container">
       <section class="form-signin">
         <form class="text-center">
-          <div class="bookmark-icon">
-            <i class="fas fa-bookmark"></i>
+          <div class="lock-icon">
+            <i class="fas fa-lock"></i>
           </div>
           <div class="id">
             <input
@@ -113,32 +125,30 @@
             />
           </div>
           <div class="d-grid gap-2 col-xl-6 mx-auto mt-5">
-            <button id="login-btn" class="btn btn-outline-light" type="submit">
+            <button id="login-btn" class="btn btn-outline-dark" type="submit">
               로그인
             </button>
-            <button
-              id="sign-up-btn"
-              class="btn btn-outline-light"
-              type="button"
-            >
+            <button id="sign-up-btn" class="btn btn-outline-dark" type="button">
               회원 가입
             </button>
             <button
               id="sign-up-check"
-              class="btn btn-outline-light"
+              class="btn btn-outline-dark"
               type="submit"
             >
               회원 가입 하기
             </button>
             <button
               id="sign-up-back"
-              class="btn btn-outline-light"
+              class="btn btn-outline-dark"
               type="button"
             >
               로그인 창으로 가기
             </button>
           </div>
-          <p class="mt-5 mb-3 text-white">&copy; 2023 북마크 저장소</p>
+          <div class="typing">
+            &copy Made By <span class="mt-5 mb-3 text-black" id="typing"></span>
+          </div>
         </form>
       </section>
     </main>

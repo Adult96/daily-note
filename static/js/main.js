@@ -1,5 +1,6 @@
 // global variable
-let date = null;
+let yearAndMonth = null;
+let day = null;
 
 function selectorShowOrHide(boolean, ...selectors) {
   if (boolean === true) {
@@ -16,8 +17,17 @@ const yearMonth = document.querySelector('.year-month');
 //달력 클릭 이벤트
 
 document.addEventListener('click', e => {
-  if (e.target.className === 'day current') {
-    date = `${yearMonth.innerHTML}.${e.target.innerText}`;
+  const target = e.target.className;
+
+  //날짜 전역변수 저장
+  const dateSplit = yearMonth.innerHTML.split('.');
+  const addZeroMonth =
+    dateSplit[1].length === 1 ? `0${dateSplit[1]}` : `${dateSplit[1]}`;
+
+  if (target === 'day current' || target === 'day current today') {
+    yearAndMonth = `${dateSplit[0]}.${addZeroMonth}`;
+    day = `${e.target.innerText}`;
+
     selectorShowOrHide(false, mainPage);
     selectorShowOrHide(true, mainPageList);
   }
@@ -75,7 +85,7 @@ function calendarInit() {
     var nextDate = endDay.getDate();
     var nextDay = endDay.getDay();
 
-    // console.log(prevDate, prevDay, nextDate, nextDay);
+    // console.log(prevDate, prevDay, nextDate, nextDay)
 
     // 현재 월 표기
     $('.year-month').text(currentYear + '.' + (currentMonth + 1));
@@ -136,9 +146,69 @@ document.addEventListener('click', e => {
   if (e.target.className === 'card-img-overlay') {
     selectorShowOrHide(true, calendarEditPop);
     selectorShowOrHide(false, noteAddPop);
-    popUpShow();
+    popUpShow(yearAndMonth);
   }
 });
+
+noteAddPop.addEventListener('click', e => {
+  const dailyData = saveAjex(yearAndMonth, day);
+  show_daily(dailyData);
+});
+
+function show_daily(datas) {
+  $('#card-box').empty;
+
+  datas.forEach(datas => {
+    const index = datas['index'];
+    const title = datas['title'];
+    const content = datas['content'];
+
+    const temp_html = `
+  <div class="col" data-index="${index}">
+    <div class="card bg-dark text-black">
+      <img src="/static/img/note.png" class="card-img" alt="..." />
+      <div class="card-img-overlay">
+        <h5 class="card-title">${title}</h5>
+        <p class="card-text">${content}</p>
+      </div>
+    </div>
+  </div>
+  `;
+
+    $('#card-box').append(temp_html);
+  });
+
+  closePopup();
+}
+
+function saveAjex(yearAndMonth, day) {
+  let data = {};
+
+  const tokenId = document.querySelector('.logo').getAttribute('data-id');
+  let title = $('#notePop__title').val();
+  let content = $('#note-text').val();
+
+  $.ajax({
+    type: 'POST',
+    url: '/save_daily',
+    data: {
+      id_give: tokenId,
+      title_give: title,
+      content_give: content,
+      yyyyMM_give: yearAndMonth,
+      day_give: day,
+    },
+    async: false,
+    success: function (response) {
+      data = response['daily_list'];
+    },
+    error: function () {
+      alert('에러 발생');
+    },
+  });
+
+  return data;
+}
 
 //===================== 팝업 =========================
 
@@ -160,9 +230,13 @@ function popUpShow() {
 }
 
 $('#close__notePop').click(function () {
-  $(this).closest('#notePop').removeClass('reveal').fadeOut(200);
-  $('body').removeClass('has-url');
+  closePopup();
 });
+
+function closePopup() {
+  $('#close__notePop').closest('#notePop').removeClass('reveal').fadeOut(200);
+  $('body').removeClass('has-url');
+}
 
 const calendarBack = document.querySelector('#calendar-back');
 
