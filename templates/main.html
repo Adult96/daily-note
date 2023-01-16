@@ -42,13 +42,10 @@
     <!-- Page Navbar -->
     <nav class="custom-navbar">
       <div class="nav-box">
-        <a class="logo" href="/">Daily Note</a>
+        <a class="logo" data-id="{{id}}" href="/">Daily Note</a>
         <ul class="nav">
           <li class="item">
-            <a class="link" href="/">홈</a>
-          </li>
-          <li class="item">
-            <a class="link" href="/login">로그인</a>
+            <a class="link" href="/login">로그아웃</a>
           </li>
         </ul>
         <a
@@ -85,7 +82,17 @@
       </div>
     </main>
     <main class="container note-list">
-      <div class="row row-cols-1 row-cols-md-3 g-4" id="card-box"></div>
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="card-box">
+        <div class="col">
+          <div class="card bg-dark text-black">
+            <img src="/static/img/note.png" class="card-img" alt="..." />
+            <div class="card-img-overlay">
+              <h5 class="card-title">여기에 타이틀 추가</h5>
+              <p class="card-text">여기에 코멘트 추가</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="card-add">
         <button type="button" id="note-add" class="btn btn-outline-dark">
           NOTE ADD
@@ -108,7 +115,7 @@
           <label>제목</label>
         </div>
         <div class="form-floating text">
-          <textarea name="tags" id="note-text" cols="30" rows="10"></textarea>
+          <textarea name="tags" id="note-text" cols="30" rows="10"> </textarea>
         </div>
         <div class="mybtns">
           <button type="button" class="btn btn-light" id="note-add-pop">
