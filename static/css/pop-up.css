@@ -2,18 +2,18 @@
   cursor: pointer;
 }
 
-#postPop {
+#notePop {
   position: fixed;
 }
 
-#postPop.reveal {
+#notePop.reveal {
   z-index: 9999;
   display: block;
   opacity: 1;
   pointer-events: all;
 }
 
-#postPop {
+#notePop {
   display: none;
   overflow: hidden;
   top: 0;
@@ -28,9 +28,9 @@
   backdrop-filter: blur(5px);
 }
 
-#postPop .postPop__container {
+#notePop .notePop__container {
   position: fixed;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -180%);
   -webkit-transform: translate(-50%, -180%);
@@ -38,6 +38,7 @@
     opacity 0.2s cubic-bezier(0.6, 0.05, 0.28, 0.91);
   max-width: 900px;
   width: 80%;
+  height: 90%;
   flex-direction: column;
   border-radius: 5px 5px 10px 10px;
   pointer-events: auto;
@@ -49,11 +50,11 @@
   padding: 0rem 0rem 1rem;
   opacity: 0;
 }
-.postPop__container div:nth-child(n + 2):nth-child(-n + 4) {
+.notePop__container div:nth-child(n + 2):nth-child(-n + 4) {
   padding: 0rem 1rem;
 }
 
-.postPop__container input,
+.notePop__container input,
 .form-floating .tagify {
   border-radius: 1rem;
   background: #2c2c2c;
@@ -61,7 +62,7 @@
   color: white;
 }
 
-#postPop.reveal .postPop__container {
+#notePop.reveal .notePop__container {
   transform: translate(-50%, -70%);
   -webkit-transform: translate(-50%, -70%);
   transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.28, 0.91),
@@ -109,12 +110,18 @@
   width: 100%;
 }
 
-.tag-input {
-  background-color: white;
-  color: rgb(77, 77, 77);
+.form-floating.text {
+  height: 80%;
 }
 
-.postPop__form label,
+#note-text {
+  background-color: white;
+  color: rgb(77, 77, 77);
+  height: 100%;
+  width: 100%;
+}
+
+.notePop__form label,
 .tagify__input:before,
 .form-control::placeholder {
   color: #919191 !important;
@@ -139,4 +146,15 @@
 .tags-look .tagify__dropdown__item:hover {
   background: lightyellow;
   border-color: gold;
+}
+
+.mybtns {
+  display: flex;
+  justify-content: end;
+  margin: 1rem 0 0 0;
+}
+
+#note-add,
+#calendar-back {
+  margin: 1rem 0;
 }

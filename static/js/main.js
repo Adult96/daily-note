@@ -1,3 +1,6 @@
+// global variable
+let date = null;
+
 function selectorShowOrHide(boolean, ...selectors) {
   if (boolean === true) {
     selectors.map(selector => (selector.style.display = 'block'));
@@ -9,10 +12,11 @@ function selectorShowOrHide(boolean, ...selectors) {
 //========================= 달력 시작=========================
 const mainPage = document.querySelector('.container.note');
 const mainPageList = document.querySelector('.container.note-list');
-
+const yearMonth = document.querySelector('.year-month');
 //달력 클릭 이벤트
 document.addEventListener('click', e => {
   if (e.target.className === 'day current') {
+    date = `${yearMonth.innerHTML}.${e.target.innerText}`;
     selectorShowOrHide(false, mainPage);
     selectorShowOrHide(true, mainPageList);
   }
@@ -116,3 +120,79 @@ function calendarInit() {
 }
 
 //========================= 달력 끝=========================
+
+//========================= 리스트 시작=========================
+
+const noteAdd = document.querySelector('#note-add');
+const notePop = document.querySelector('#notePop');
+const noteEdit = document.querySelector('note-edit');
+
+const noteAddPop = document.querySelector('#note-add-pop');
+const calendarEditPop = document.querySelector('#calendar-edit-pop');
+
+const cardBox = document.querySelector('#card-box');
+
+const noteTitle = document.querySelector('#notePop__title');
+const noteText = document.querySelector('#note-text');
+
+noteAddPop.addEventListener('click', e => {
+  const noteTitleValue = noteTitle.value;
+  const noteTextText = noteText.value;
+
+  const temp_html = `
+  <div class="col">
+  <div class="card bg-dark text-black">
+    <img src="/static/img/note.png" class="card-img" alt="..." />
+    <div class="card-img-overlay">
+      <h5 class="card-title">${noteTitleValue}</h5>
+        <p class="card-text">
+        ${noteTextText}
+        </p>
+      </div>
+    </div>
+  </div>
+  `;
+
+  $('#card-box').append(temp_html);
+});
+
+document.addEventListener('click', e => {
+  if (e.target.className === 'card-img-overlay') {
+    selectorShowOrHide(true, calendarEditPop);
+    selectorShowOrHide(false, noteAddPop);
+    popUpShow();
+  }
+});
+
+//========================= 리스트 끝=========================
+
+//=====================포스팅 팝업=========================
+
+$(document).ready(function () {
+  $(document).on('click', '#note-add', function (e) {
+    selectorShowOrHide(false, calendarEditPop);
+    selectorShowOrHide(true, noteAddPop);
+    popUpShow();
+  });
+});
+
+function popUpShow() {
+  $('#notePop')
+    .fadeIn(300, function () {
+      $('#notePop').focus();
+    })
+    .addClass('reveal');
+  $('body').addClass('has-url');
+}
+
+$('#close__notePop').click(function () {
+  $(this).closest('#notePop').removeClass('reveal').fadeOut(200);
+  $('body').removeClass('has-url');
+});
+
+const calendarBack = document.querySelector('#calendar-back');
+
+calendarBack.addEventListener('click', () => {
+  window.location.reload();
+  selectorShowOrHide(false, mainPageList);
+});
