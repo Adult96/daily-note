@@ -1,0 +1,68 @@
+.form-signin {
+  width: 100%;
+  max-width: 500px;
+  padding: 3rem 4rem;
+  margin: auto;
+  background-color: #00000050;
+  backdrop-filter: blur(6px);
+  border-radius: 2rem;
+  filter: drop-shadow(2px 4px 6px rgb(0, 0, 0));
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.bookmark-icon {
+  font-size: 3rem;
+  color: var(--brand-color);
+  margin-bottom: 1rem;
+}
+
+#floatingId,
+#floatingPassword,
+#floatingPasswordCheck {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  padding: 0 16px;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#floatingPasswordCheck {
+  display: none;
+}
+
+#sign-up-check {
+  display: none;
+}
+
+#sign-up-back {
+  display: none;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+@keyframes background {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

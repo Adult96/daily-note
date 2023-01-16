@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: makerBlack;
+}
+
+#load {
+  text-align: center;
+  color: makerWhite;
+  font-size: 6rem;
+  /* font-family: 'Black Han Sans', sans-serif; */
+  font-family: 'Bebas Neue', cursive;
+  animation: text 3s 1 linear alternate;
+  /* opacity: 0; */
+}
+
+#left,
+#top,
+#right,
+#bottom {
+  cursor: pointer;
+  -webkit-text-stroke: 1px whitesmoke;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(0deg, whitesmoke, whitesmoke);
+  background-repeat: no-repeat;
+  background-position: 0% 0%;
+  filter: drop-shadow(0 0 10px whitesmoke);
+  margin: 0.5rem;
+}
+
+#left {
+  background-position: 0% 100%;
+  background-size: 100% 100%;
+  animation: left 3s linear 1;
+}
+
+#right {
+  background-position: 100% 0%;
+  background-size: 100% 100%;
+  animation: right 3s linear 1;
+}
+
+#top {
+  background-position: 100% 0%;
+  background-size: 100% 100%;
+  animation: top 3s linear 1;
+}
+
+#bottom {
+  background-position: 100% 0%;
+  background-size: 100% 100%;
+  animation: bottom 3s linear 1;
+}
+
+@keyframes text {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes left {
+  0% {
+    background-position: 0% 100%;
+    background-size: 0% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes right {
+  0% {
+    background-position: 100% 0%;
+    background-size: 0% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes top {
+  0% {
+    background-position: 0% 0%;
+    background-size: 100% 0%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes bottom {
+  0% {
+    background-position: 0% 100%;
+    background-size: 100% 0%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
