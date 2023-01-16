@@ -156,7 +156,7 @@ def update_daily():
     
     filter = {'index': index}
  
-    newvalues = { "$set": { 'con': content_receive } }
+    newvalues = { "$set": { 'title': title_receive ,'content': content_receive } }
 
     db.daily.update_one(filter,newvalues)
     
@@ -172,6 +172,16 @@ def delete_daily():
     db.daily.delete_one({'index':int(receive_index)})
 
     return jsonify({'msg':'삭제완료'})    
+
+
+@app.route("/data_Check", methods=["POST"])
+def data_Check():
+    receive_id = request.form['give_id']
+    receive_Month = request.form['give_Month']
+
+    monthly_list = list(db.daily.find({'id':receive_id, 'yyyyMM':receive_Month},{'_id': False}))
+    print(receive_id,receive_Month,monthly_list)
+    return jsonify({'monthly_list':monthly_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

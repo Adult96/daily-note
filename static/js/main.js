@@ -25,7 +25,16 @@ document.addEventListener('click', (e) => {
     const dateSplit = yearMonth.innerHTML.split('.');
     const addZeroMonth = dateSplit[1].length === 1 ? `0${dateSplit[1]}` : `${dateSplit[1]}`;
 
-    if (target === 'day current' || target === 'day current today') {
+    if (
+        target === 'day current' || //
+        target === 'day current today' ||
+        target === 'day current blue' ||
+        target === 'day current yellow' ||
+        target === 'day current red' ||
+        target === 'day current today blue' ||
+        target === 'day current today yellow' ||
+        target === 'day current today red'
+    ) {
         yearAndMonth = `${dateSplit[0]}.${addZeroMonth}`;
         day = `${e.target.innerText}`;
 
@@ -103,7 +112,7 @@ function calendarInit() {
         }
         // 이번달
         for (var i = 1; i <= nextDate; i++) {
-            calendar.innerHTML = calendar.innerHTML + '<div class="day current">' + i + '</div>';
+            calendar.innerHTML = calendar.innerHTML + '<div class="day current" data-count=0>' + i + '</div>';
         }
         // 다음달
         for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
@@ -116,6 +125,43 @@ function calendarInit() {
             var currentMonthDate = document.querySelectorAll('.dates .current');
             currentMonthDate[todayDate - 1].classList.add('today');
         }
+
+        // 캘린더에 표시
+        const dayCurrent = document.querySelectorAll('.day.current');
+
+        const zeroAddMonth = `${currentMonth + 1}`.length === 1 ? `0${currentMonth + 1}` : `${currentMonth + 1}`;
+
+        const yearAndMonth = `${currentYear}.${zeroAddMonth}`;
+
+        let monthData = data_check(yearAndMonth.toString());
+        monthData.forEach((v) => {
+            const getCount = dayCurrent[v['dd'] - 1].getAttribute('data-count');
+
+            dayCurrent[v['dd'] - 1].setAttribute('data-count', Number(getCount) + 1);
+        });
+
+        dayCurrent.forEach((v, i) => {
+            const index = i + 1;
+            const count = v.getAttribute('data-count');
+            const className = v.getAttribute('class', 'day current');
+            if (className === 'day current') {
+                if (count > 10) {
+                    v.setAttribute('class', 'day current red');
+                } else if (count > 5) {
+                    v.setAttribute('class', 'day current yellow');
+                } else if (count > 0) {
+                    v.setAttribute('class', 'day current blue');
+                }
+            } else if (className === 'day current today') {
+                if (count > 10) {
+                    v.setAttribute('class', 'day current today red');
+                } else if (count > 5) {
+                    v.setAttribute('class', 'day current today yellow');
+                } else if (count > 0) {
+                    v.setAttribute('class', 'day current today blue');
+                }
+            }
+        });
     }
 
     // 이전달로 이동
@@ -156,22 +202,11 @@ document.addEventListener('click', (e) => {
 
 noteEditPop.addEventListener('click', () => {
     const noteIndex = dataIndex;
-    const datas = data;
-    let title = null;
-    let content = null;
-
-    datas.forEach((data) => {
-        const index = data['index'];
-
-        if (index === Number(noteIndex)) {
-            title = data['title'];
-            content = data['content'];
-        } else {
-            return;
-        }
-    });
+    const title = $('#notePop__title').val();
+    const content = $('#note-text').val();
 
     const dailyData = updateAjax(noteIndex, title, content);
+    data = dailyData;
     show_daily(dailyData);
     removeText();
 });
@@ -215,7 +250,7 @@ function show_daily(datas) {
 document.addEventListener('click', (e) => {
     if (e.target.className === 'cards-box__closeBtn') {
         const index = e.target.parentNode.parentNode.dataset.index;
-        const datas = deleteAjax(index);
+        deleteAjax(index);
         data = showAjax();
         show_daily(data);
     }
@@ -375,4 +410,22 @@ function deleteAjax(index) {
             alert('에러 발생');
         },
     });
+}
+
+function data_check(yearAndMonth) {
+    let monthly_list = {};
+
+    const tokenId = document.querySelector('.logo').getAttribute('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: '/data_Check',
+        data: { give_id: tokenId, give_Month: yearAndMonth },
+        async: false,
+        success: function (response) {
+            monthly_list = response['monthly_list'];
+        },
+    });
+
+    return monthly_list;
 }
