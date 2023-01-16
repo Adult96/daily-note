@@ -207,3 +207,29 @@
 .card-text {
     pointer-events: none;
 }
+
+.list-color {
+    position: absolute;
+    right: 2%;
+    bottom: 20%;
+}
+
+.list {
+    width: 5rem;
+    height: 3rem;
+}
+
+.list.blue {
+    background-color: rgba(90, 68, 255, 0.722);
+    border: 1px solid blue;
+}
+
+.list.yellow {
+    background-color: rgba(240, 255, 106, 0.803);
+    border: 1px solid yellow;
+}
+
+.list.red {
+    background-color: rgba(255, 74, 74, 0.718);
+    border: 1px solid red;
+}
