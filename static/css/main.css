@@ -123,3 +123,41 @@
 .day.current:hover {
   border: 1px solid blue;
 }
+
+/* ============ note list ========== */
+
+.container.note-list {
+  max-width: 40rem;
+  max-height: 43rem;
+}
+
+.container.note-list {
+  display: none;
+  margin: 11rem auto;
+  max-width: 40rem;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.card {
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0.5rem 0 0 0;
+  cursor: pointer;
+}
+
+.col:hover {
+  scale: 1.02;
+  transition: scale 300ms ease-in-out;
+}
+
+.card-add {
+  position: fixed;
+  bottom: 4rem;
+  right: 1rem;
+  width: 5rem;
+  height: 2rem;
+}

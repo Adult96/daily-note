@@ -10,7 +10,7 @@ import jwt
 from pymongo import MongoClient
 
 client = MongoClient(
-    "mongodb+srv://miniproject:<password>@cluster0.bqlznzm.mongodb.net/?retryWrites=true&w=majority")
+    "mongodb+srv://miniproject:sparta@cluster0.bqlznzm.mongodb.net/?retryWrites=true&w=majority")
 db = client.dbsparta
 
 # 웹스크래핑 bs4 패키지 추가

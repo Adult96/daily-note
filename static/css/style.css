@@ -2,6 +2,7 @@
 @import './animation.css';
 @import './login.css';
 @import './main.css';
+@import './pop-up.css';
 
 :root {
   --brand-color: rgb(92 193 255);

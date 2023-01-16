@@ -8,11 +8,13 @@ function selectorShowOrHide(boolean, ...selectors) {
 
 //========================= 달력 시작=========================
 const mainPage = document.querySelector('.container.note');
+const mainPageList = document.querySelector('.container.note-list');
 
 //달력 클릭 이벤트
 document.addEventListener('click', e => {
   if (e.target.className === 'day current') {
     selectorShowOrHide(false, mainPage);
+    selectorShowOrHide(true, mainPageList);
   }
 });
 
