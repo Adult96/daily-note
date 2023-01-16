@@ -30,6 +30,9 @@ document.addEventListener('click', e => {
 
     selectorShowOrHide(false, mainPage);
     selectorShowOrHide(true, mainPageList);
+
+    const dailyData = showAjax(yearAndMonth, day);
+    show_daily(dailyData);
   }
 });
 
@@ -150,7 +153,7 @@ document.addEventListener('click', e => {
   }
 });
 
-noteAddPop.addEventListener('click', e => {
+noteAddPop.addEventListener('click', () => {
   const dailyData = saveAjex(yearAndMonth, day);
   show_daily(dailyData);
 });
@@ -179,35 +182,6 @@ function show_daily(datas) {
   });
 
   closePopup();
-}
-
-function saveAjex(yearAndMonth, day) {
-  let data = {};
-
-  const tokenId = document.querySelector('.logo').getAttribute('data-id');
-  let title = $('#notePop__title').val();
-  let content = $('#note-text').val();
-
-  $.ajax({
-    type: 'POST',
-    url: '/save_daily',
-    data: {
-      id_give: tokenId,
-      title_give: title,
-      content_give: content,
-      yyyyMM_give: yearAndMonth,
-      day_give: day,
-    },
-    async: false,
-    success: function (response) {
-      data = response['daily_list'];
-    },
-    error: function () {
-      alert('에러 발생');
-    },
-  });
-
-  return data;
 }
 
 //===================== 팝업 =========================
@@ -244,3 +218,59 @@ calendarBack.addEventListener('click', () => {
   window.location.reload();
   selectorShowOrHide(false, mainPageList);
 });
+
+// ============ Ajax 통신 ==============
+
+function showAjax(yearAndMonth, day) {
+  let data = {};
+
+  const tokenId = document.querySelector('.logo').getAttribute('data-id');
+
+  $.ajax({
+    type: 'POST',
+    url: '/show_daily',
+    data: {
+      id_give: tokenId,
+      yyyyMM_give: yearAndMonth,
+      day_give: day,
+    },
+    async: false,
+    success: function (response) {
+      data = response['daily_list'];
+    },
+    error: function () {
+      alert('에러 발생');
+    },
+  });
+
+  return data;
+}
+
+function saveAjex(yearAndMonth, day) {
+  let data = {};
+
+  const tokenId = document.querySelector('.logo').getAttribute('data-id');
+  let title = $('#notePop__title').val();
+  let content = $('#note-text').val();
+
+  $.ajax({
+    type: 'POST',
+    url: '/save_daily',
+    data: {
+      id_give: tokenId,
+      title_give: title,
+      content_give: content,
+      yyyyMM_give: yearAndMonth,
+      day_give: day,
+    },
+    async: false,
+    success: function (response) {
+      data = response['daily_list'];
+    },
+    error: function () {
+      alert('에러 발생');
+    },
+  });
+
+  return data;
+}
