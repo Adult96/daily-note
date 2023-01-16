@@ -1,3 +1,6 @@
+// global variable
+let date = null;
+
 function selectorShowOrHide(boolean, ...selectors) {
   if (boolean === true) {
     selectors.map(selector => (selector.style.display = 'block'));
@@ -6,20 +9,24 @@ function selectorShowOrHide(boolean, ...selectors) {
   }
 }
 
-//========================= 달력 시작=========================
+//========================= 달력 =========================
 const mainPage = document.querySelector('.container.note');
-
+const mainPageList = document.querySelector('.container.note-list');
+const yearMonth = document.querySelector('.year-month');
 //달력 클릭 이벤트
+
 document.addEventListener('click', e => {
   if (e.target.className === 'day current') {
+    date = `${yearMonth.innerHTML}.${e.target.innerText}`;
     selectorShowOrHide(false, mainPage);
-    show_daily('ndk','20230116')
+    selectorShowOrHide(true, mainPageList);
   }
 });
 
 $(document).ready(function () {
   calendarInit();
 });
+
 /*
   달력 렌더링 할 때 필요한 정보 목록 
 
@@ -114,40 +121,52 @@ function calendarInit() {
   });
 }
 
+//========================= 리스트 상세페이지 =========================
 
-//========================= 달력 끝=========================
+const noteAdd = document.querySelector('#note-add');
+const notePop = document.querySelector('#notePop');
+const noteEdit = document.querySelector('note-edit');
 
-// 날짜 별 데이터 보여주기
-function show_daily(id, date) {
-  $('#cards-box').empty()
-  $.ajax({
-    type: 'POST',
-    url: '/show_daily',
-    data: {'give_id':id , 'give_date':date},
-    success: function (response) {
-      let rows = response['daily_list']
-      console.log(rows);
-      for (let i = 0; i < rows.length; i++) {
-        let index = rows[i]['index']
-        // let id = rows[i]['id']
-        // let date = rows[i]['date']
-        let title = rows[i]['title']
-        let content = rows[i]['content']
+const noteAddPop = document.querySelector('#note-add-pop');
+const calendarEditPop = document.querySelector('#calendar-edit-pop');
 
+const cardBox = document.querySelector('#card-box');
 
-        let temp_html = `<div class="col">
-                                            <div class="card h-100">
-                                                <img src=""
-                                                     class="card-img-top">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${title}</h5>
-                                                    <p class="card-text">${content}</p>
-                                                    <button>삭제</button>
-                                                </div>
-                                            </div>
-                                        </div>`
-        $('#cards-box').append(temp_html)
-      }
-    }
-  })
+document.addEventListener('click', e => {
+  if (e.target.className === 'card-img-overlay') {
+    selectorShowOrHide(true, calendarEditPop);
+    selectorShowOrHide(false, noteAddPop);
+    popUpShow();
+  }
+});
+
+//===================== 팝업 =========================
+
+$(document).ready(function () {
+  $(document).on('click', '#note-add', function (e) {
+    selectorShowOrHide(false, calendarEditPop);
+    selectorShowOrHide(true, noteAddPop);
+    popUpShow();
+  });
+});
+
+function popUpShow() {
+  $('#notePop')
+    .fadeIn(300, function () {
+      $('#notePop').focus();
+    })
+    .addClass('reveal');
+  $('body').addClass('has-url');
 }
+
+$('#close__notePop').click(function () {
+  $(this).closest('#notePop').removeClass('reveal').fadeOut(200);
+  $('body').removeClass('has-url');
+});
+
+const calendarBack = document.querySelector('#calendar-back');
+
+calendarBack.addEventListener('click', () => {
+  window.location.reload();
+  selectorShowOrHide(false, mainPageList);
+});
