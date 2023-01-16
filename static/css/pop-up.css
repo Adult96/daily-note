@@ -59,7 +59,11 @@
   border-radius: 1rem;
   background: #2c2c2c;
   border: none;
-  color: white;
+  color: rgb(0, 0, 0);
+}
+
+#form-notePop__title:focus {
+  outline: none;
 }
 
 #notePop.reveal .notePop__container {
@@ -68,6 +72,11 @@
   transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.28, 0.91),
     opacity 0.8s cubic-bezier(0.6, 0.05, 0.28, 0.91);
   opacity: 1;
+}
+.notePop__container,
+#note-text,
+#notePop__title {
+  background: url('/static/img/note.png');
 }
 
 /*====tag cloud*/
@@ -115,7 +124,6 @@
 }
 
 #note-text {
-  background-color: white;
   color: rgb(77, 77, 77);
   height: 100%;
   width: 100%;

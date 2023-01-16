@@ -77,11 +77,13 @@ function make_Token(id, password) {
 
 function singupCrossCheck(userId, password, otherPassword) {
   if (userId === '' || password === '' || otherPassword === '') {
-    alert('공백란을 채워 주세요');
+    toastr.error('공백란을 채워 주세요');
+
     return false;
   }
   if (password !== otherPassword) {
-    alert('비밀 번호를 재입력 해주세요');
+    toastr.error('동일한 비밀번호를 입력해 주세요');
+
     return false;
   }
 
@@ -90,7 +92,7 @@ function singupCrossCheck(userId, password, otherPassword) {
 
 function loginCrossCheck(userId, password) {
   if (userId === '' || password === '') {
-    alert('공백란을 채워 주세요');
+    toastr.error('공백란을 채워 주세요');
     return false;
   }
 

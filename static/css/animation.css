@@ -15,7 +15,6 @@
   /* font-family: 'Black Han Sans', sans-serif; */
   font-family: 'Bebas Neue', cursive;
   animation: text 3s 1 linear alternate;
-  /* opacity: 0; */
 }
 
 #left,
@@ -23,13 +22,13 @@
 #right,
 #bottom {
   cursor: pointer;
-  -webkit-text-stroke: 1px whitesmoke;
+  -webkit-text-stroke: 1px rgb(39, 39, 39);
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(0deg, whitesmoke, whitesmoke);
+  background-image: linear-gradient(0deg, rgb(39, 39, 39), rgb(39, 39, 39));
   background-repeat: no-repeat;
   background-position: 0% 0%;
-  filter: drop-shadow(0 0 10px whitesmoke);
+  filter: drop-shadow(0 0 10px rgb(39, 39, 39));
   margin: 0.5rem;
 }
 

@@ -83,10 +83,10 @@
 .sec_cal .cal_wrap .day {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: first baseline;
   width: calc(100% / 7);
   text-align: left;
-  color: #999;
+  color: rgb(46, 46, 46);
   font-size: 12px;
   text-align: center;
   border-radius: 5px;
@@ -120,7 +120,12 @@
   border: 1px solid transparent;
 }
 
-.day.current:hover {
+.day.current.today {
+  border: 1px solid black;
+}
+
+.day.current:hover,
+.day.current.today:hover {
   border: 1px solid blue;
 }
 
@@ -147,13 +152,13 @@
   text-overflow: ellipsis;
   margin: 0.5rem 0;
   cursor: pointer;
+  border: none;
 }
 
 .col:hover {
   scale: 1.02;
   transition: scale 300ms ease-in-out;
 }
-
 .card-add {
   display: flex;
   flex-direction: column;

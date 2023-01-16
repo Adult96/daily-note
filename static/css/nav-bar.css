@@ -74,7 +74,7 @@
 }
 
 .custom-navbar .nav .item .link {
-  color: #fff;
+  color: black;
   font-weight: 500;
   text-decoration: none;
 }
@@ -92,7 +92,7 @@
 .custom-navbar .logo {
   font-size: 1.5rem;
   text-decoration: none;
-  color: #fff;
+  color: black;
 }
 
 .custom-navbar.scroll .nav-box {
