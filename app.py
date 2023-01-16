@@ -108,6 +108,13 @@ def main():
         print(logging.error(traceback.format_exc()))
         return render_template('login.html')
 
+@app.route("/show_daily", methods=["POST"])
+def show_daily():
+    receive_id = request.form['give_id']
+    receive_date = request.form['give_date']
+    daily_list = list(db.daily.find({'id':receive_id, 'date':receive_date},{'_id': False}))
+    return jsonify({'daily_list':daily_list})
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
