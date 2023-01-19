@@ -1,168 +1,166 @@
 .nav__posting {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #notePop {
-  position: fixed;
+    position: fixed;
 }
 
 #notePop.reveal {
-  z-index: 9999;
-  display: block;
-  opacity: 1;
-  pointer-events: all;
+    z-index: 9999;
+    display: block;
+    opacity: 1;
+    pointer-events: all;
 }
 
 #notePop {
-  display: none;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  z-index: 99999;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100vh;
-  padding: 63px 40px 63px;
-  pointer-events: none;
-  background-color: #1e1e1ea1;
-  backdrop-filter: blur(5px);
+    display: none;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    padding: 63px 40px 63px;
+    pointer-events: none;
+    background-color: #1e1e1ea1;
+    backdrop-filter: blur(5px);
 }
 
 #notePop .notePop__container {
-  position: fixed;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -180%);
-  -webkit-transform: translate(-50%, -180%);
-  transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.28, 0.91),
-    opacity 0.2s cubic-bezier(0.6, 0.05, 0.28, 0.91);
-  max-width: 900px;
-  width: 80%;
-  height: 90%;
-  flex-direction: column;
-  border-radius: 5px 5px 10px 10px;
-  pointer-events: auto;
-  background-color: #181818;
-  background-clip: padding-box;
-  border: 1px solid rgb(138 138 138 / 62%);
-  box-shadow: rgb(0 0 0 / 48%) 0 26px 30px -10px,
-    rgb(0 0 0 / 23%) 0 16px 10px -10px;
-  padding: 0rem 0rem 1rem;
-  opacity: 0;
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -180%);
+    -webkit-transform: translate(-50%, -180%);
+    transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 0.2s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+    max-width: 900px;
+    width: 80%;
+    height: 90%;
+    flex-direction: column;
+    border-radius: 5px 5px 10px 10px;
+    pointer-events: auto;
+    background-color: #181818;
+    background-clip: padding-box;
+    border: 1px solid rgb(138 138 138 / 62%);
+    box-shadow: rgb(0 0 0 / 48%) 0 26px 30px -10px, rgb(0 0 0 / 23%) 0 16px 10px -10px;
+    padding: 0rem 0rem 1rem;
+    opacity: 0;
 }
 .notePop__container div:nth-child(n + 2):nth-child(-n + 4) {
-  padding: 0rem 1rem;
+    padding: 0rem 1rem;
 }
 
 .notePop__container input,
 .form-floating .tagify {
-  border-radius: 1rem;
-  background: #2c2c2c;
-  border: none;
-  color: rgb(0, 0, 0);
+    border-radius: 1rem;
+    background: #2c2c2c;
+    border: none;
+    color: rgb(0, 0, 0);
 }
 
 #form-notePop__title:focus {
-  outline: none;
+    outline: none;
 }
 
 #notePop.reveal .notePop__container {
-  transform: translate(-50%, -70%);
-  -webkit-transform: translate(-50%, -70%);
-  transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.28, 0.91),
-    opacity 0.8s cubic-bezier(0.6, 0.05, 0.28, 0.91);
-  opacity: 1;
+    transform: translate(-50%, -70%);
+    -webkit-transform: translate(-50%, -70%);
+    transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.28, 0.91), opacity 0.8s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+    opacity: 1;
 }
 .notePop__container,
 #note-text,
 #notePop__title {
-  background: url('/static/img/note.png');
+    background: url('/static/img/note.png');
 }
 
 /*====tag cloud*/
 
 .tag-cloud__container {
-  padding: 1.5rem 1rem 0;
-  /* border-top: 1px solid #525252; */
+    padding: 1.5rem 1rem 0;
+    /* border-top: 1px solid #525252; */
 }
 
 .tag-cloud__title {
-  margin-bottom: 1rem;
-  margin-left: 10px;
+    margin-bottom: 1rem;
+    margin-left: 10px;
 }
 
 .tag-cloud__list span {
-  display: inline-block;
-  margin: 10px 1px;
-  color: white;
+    display: inline-block;
+    margin: 10px 1px;
+    color: white;
 }
 
 .tag-cloud__tags {
-  border: 1px solid #535353;
-  border-radius: 50px;
-  padding: 0.3rem 0.7rem;
-  font-size: 0.8rem;
-  transition: 0.2s ease;
+    border: 1px solid #535353;
+    border-radius: 50px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    transition: 0.2s ease;
 }
 
 .tag-cloud__tags:hover {
-  background: white;
-  color: black;
-  border: 1px solid transparent;
+    background: white;
+    color: black;
+    border: 1px solid transparent;
 }
 .tag-cloud__tags > i {
-  padding-right: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 /* tagify 라이브러리 */
 .tagify {
-  width: 100%;
+    width: 100%;
 }
 
 .form-floating.text {
-  height: 80%;
+    height: 80%;
 }
 
 #note-text {
-  color: rgb(77, 77, 77);
-  height: 100%;
-  width: 100%;
+    color: rgb(77, 77, 77);
+    height: 100%;
+    width: 100%;
 }
 
 .notePop__form label,
 .tagify__input:before,
 .form-control::placeholder {
-  color: #919191 !important;
+    color: #919191 !important;
 }
 
 .tags-look .tagify__dropdown__item {
-  display: inline-block;
-  border-radius: 3px;
-  padding: 0.3em 0.5em;
-  border: 1px solid #ccc;
-  background: #f3f3f3;
-  margin: 0.2em;
-  font-size: 0.85em;
-  color: black;
-  transition: 0s;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 0.3em 0.5em;
+    border: 1px solid #ccc;
+    background: #f3f3f3;
+    margin: 0.2em;
+    font-size: 0.85em;
+    color: black;
+    transition: 0s;
 }
 
 .tags-look .tagify__dropdown__item--active {
-  color: black;
+    color: black;
 }
 
 .tags-look .tagify__dropdown__item:hover {
-  background: lightyellow;
-  border-color: gold;
+    background: lightyellow;
+    border-color: gold;
 }
 
 .mybtns {
-  display: flex;
-  justify-content: end;
-  margin: 1rem 0 0 0;
+    display: flex;
+    justify-content: end;
+    margin: 1rem 0 0 0;
 }
 
 #note-add,
-#calendar-back {
-  margin: 1rem 0;
+#calendar-back,
+#calendar-back #info {
+    margin: 1rem 0;
 }

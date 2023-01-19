@@ -82,7 +82,7 @@ def make_token():
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)  # 토큰 유효시간
         }
         # jwt 암호화 
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')#.decode('utf-8')#로컬 환경 = .decode('utf-8') 사용 Line 87
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')#로컬 환경 = .decode('utf-8') 사용 Line 87
         #호스팅 서버 = .decode('utf-8') 없앰 Line 87
         
         print('payload')
@@ -140,20 +140,48 @@ def save_daily():
     db.daily.insert_one(doc)
 
     daily_list = list(db.daily.find({'id':id_receive, 'yyyyMM':yyyyMM_receive,'dd':day_receive},{'_id': False}))
-
-    print(daily_list)
     return jsonify({'daily_list': daily_list})    
 
-# @app.route("/update_daily", methods=["POST"])
-# def show_daily():
-#     receive_id = request.form['give_id']
-#     receive_date = request.form['give_date']
-#     receive_index = request.form['index_date']
+@app.route("/update_daily", methods=["POST"])
+def update_daily():
+    id_receive = request.form['id_give']
+    index_receive = request.form["index_give"]
+    index = int(index_receive)
+    title_receive = request.form["title_give"]
+    content_receive = request.form["content_give"]
+    yyyyMM_receive = request.form['yyyyMM_give']
+    day_receive = request.form['day_give']
 
-#     db.users.update_one({'id':receive_id, 'date':receive_date, 'index':receive_index},{'$set':{'age':19}})
+    print(index_receive,id_receive,yyyyMM_receive,day_receive,title_receive,content_receive)
+    
+    filter = {'index': index}
+ 
+    newvalues = { "$set": { 'title': title_receive ,'content': content_receive } }
 
-#     daily_list = list(db.daily.find({'id':receive_id, 'date':receive_date},{'_id': False}))
-#     return jsonify({'daily_list':daily_list})
+    db.daily.update_one(filter,newvalues)
+    
+    daily_list = list(db.daily.find({'id':id_receive, 'yyyyMM':yyyyMM_receive,'dd':day_receive},{'_id': False}))
+
+    return jsonify({'daily_list': daily_list})    
+
+@app.route("/delete_daily", methods=["POST"])
+def delete_daily():
+
+    receive_index = request.form['give_index']
+    print(receive_index)
+    db.daily.delete_one({'index':int(receive_index)})
+
+    return jsonify({'msg':'삭제완료'})    
+
+
+@app.route("/data_Check", methods=["POST"])
+def data_Check():
+    receive_id = request.form['give_id']
+    receive_Month = request.form['give_Month']
+
+    monthly_list = list(db.daily.find({'id':receive_id, 'yyyyMM':receive_Month},{'_id': False}))
+    print(receive_id,receive_Month,monthly_list)
+    return jsonify({'monthly_list':monthly_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
